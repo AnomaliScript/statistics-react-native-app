@@ -10,6 +10,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Function Component
 export function AuthProvider({children} : {children: React.ReactNode}) {
     const signUp = async (email: string, password: string) => {
         try {
@@ -21,8 +22,7 @@ export function AuthProvider({children} : {children: React.ReactNode}) {
             if (error instanceof Error) {
                 return error.message;
             }
-
-            return "An error occured.";
+            return "An error occurred.";
         }
     };
 
@@ -38,7 +38,6 @@ export function AuthProvider({children} : {children: React.ReactNode}) {
             return "An error occured.";
         }
     };
-
 
     return <AuthContext.Provider value={{ signUp, signIn }}>
                 { children }
