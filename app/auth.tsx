@@ -7,7 +7,7 @@ import {
     View
 } from "react-native";
 import { Button, Text, TextInput, useTheme } from "react-native-paper";
-import { AuthProvider, useAuth } from "../lib/auth-context";
+import { useAuth } from "../lib/auth-context";
 
 export default function AuthScreen() {
     const [isSignUp, setIsSignUp] = useState<boolean>(false);
@@ -46,7 +46,7 @@ export default function AuthScreen() {
                 return;
             }
 
-            router.replace("/auth");
+            router.replace("./");
         }
     }
 
@@ -54,52 +54,50 @@ export default function AuthScreen() {
         setIsSignUp((prev) => !prev)
     }
     return (
-        <AuthProvider>
-            <KeyboardAvoidingView 
+        <KeyboardAvoidingView 
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.container}
             >
-                <View style={styles.content}>
-                    <Text style={styles.title} variant="headlineMedium"> {isSignUp ? "Create an Account!" : "Welcome Back"} </Text>
+            <View style={styles.content}>
+                <Text style={styles.title} variant="headlineMedium"> {isSignUp ? "Create an Account!" : "Welcome Back"} </Text>
 
-                    {/* Email Input */}
-                    <TextInput 
-                        style={styles.input}
-                        label="Email" 
-                        autoCapitalize="none" 
-                        keyboardType="email-address" 
-                        placeholder="JohnDoe@gmail.com"
-                        mode="outlined"
-                        textAlign="center"
-                        textAlignVertical="center"
-                        onChangeText={setEmail}
-                    />
+                {/* Email Input */}
+                <TextInput 
+                    style={styles.input}
+                    label="Email" 
+                    autoCapitalize="none" 
+                    keyboardType="email-address" 
+                    placeholder="JohnDoe@gmail.com"
+                    mode="outlined"
+                    textAlign="center"
+                    textAlignVertical="center"
+                    onChangeText={setEmail}
+                />
 
-                    {/* Password Input */}
-                    <TextInput 
-                        style={styles.input}
-                        label="Password" 
-                        autoCapitalize="none" 
-                        keyboardType="email-address" 
-                        placeholder="Password"
-                        mode="outlined"
-                        textAlign="center"
-                        textAlignVertical="center"
-                        onChangeText={setPass}
-                    />
+                {/* Password Input */}
+                <TextInput 
+                    style={styles.input}
+                    label="Password" 
+                    autoCapitalize="none" 
+                    keyboardType="email-address" 
+                    placeholder="Password"
+                    mode="outlined"
+                    textAlign="center"
+                    textAlignVertical="center"
+                    onChangeText={setPass}
+                />
 
-                    {error && <Text style={{ color: theme.colors.error }}> {error} </Text>}
+                {error && <Text style={{ color: theme.colors.error }}> {error} </Text>}
 
-                    <Button mode="contained" style={styles.button} onPress={handleAuth}>{isSignUp ? "Create an Account!" : "Welcome Back"}</Button>
+                <Button mode="contained" style={styles.button} onPress={handleAuth}>{isSignUp ? "Create an Account!" : "Welcome Back"}</Button>
 
-                    <Button mode="contained" buttonColor="#a1a1a1ff" onPress={handleSwitchMode} style={styles.switchButton}>
-                        {isSignUp ? 
-                        "Already have an account? Sign In" : 
-                        "Don't have an account? Sign up"}
-                    </Button>
-                </View>
-            </KeyboardAvoidingView>
-        </AuthProvider>
+                <Button mode="contained" buttonColor="#a1a1a1ff" onPress={handleSwitchMode} style={styles.switchButton}>
+                    {isSignUp ? 
+                    "Already have an account? Sign In" : 
+                    "Don't have an account? Sign up"}
+                </Button>
+            </View>
+        </KeyboardAvoidingView>
     )
 }
 
