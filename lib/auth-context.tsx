@@ -54,17 +54,28 @@ export function AuthProvider({children} : {children: React.ReactNode}) {
     const signIn = async (email: string, password: string) => {
         try {
             await account.createEmailPasswordSession(email, password);
+            const session = await account.get();
+            setUser(session);
             return null;
         } catch(error) {
             if (error instanceof Error) {
                 return error.message;
             }
 
-            return "An error occured.";
+            return "An error occured during sign in.";
         }
     };
 
-    return <AuthContext.Provider value={{ user, isLoadingUser, signUp, signIn }}>
+    const signOut = async () => {
+        try {
+            await account.deleteSession("current");
+            setUser(null);
+        } catch(error) {
+            console.log(error)
+        }
+    };
+
+    return <AuthContext.Provider value={{ user, isLoadingUser, signUp, signIn, signOut }}>
                 { children }
             </AuthContext.Provider>
 }
