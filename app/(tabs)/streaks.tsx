@@ -1,12 +1,15 @@
 import { Text, View } from "react-native";
 
 export default function StreaksPage() {
+  return (
     <View style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    }}
     >
       <Text>This is the streaks screen, see?</Text>
     </View>
+  );
+
 }

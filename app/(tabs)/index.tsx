@@ -1,8 +1,8 @@
+import { useAuth } from '@/lib/auth-context';
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
-import { useAuth } from '../../lib/auth-context';
 
-export default function Index() {
+export default function IndexPage() {
   const { signOut } = useAuth();
   return (
     <View style={styles.view}>
