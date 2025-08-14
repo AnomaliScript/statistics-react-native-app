@@ -76,6 +76,7 @@ export default function AddHabitScreen() {
             style={styles.segmentedButtons}
         />
       </View>
+      {/* No submitting without a title and description! */}
       <Button 
         mode="contained" 
         onPress={handleSubmit} 
