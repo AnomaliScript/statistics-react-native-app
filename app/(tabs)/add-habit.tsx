@@ -20,7 +20,7 @@ export default function AddHabitScreen() {
   const theme = useTheme();
 
   const handleSubmit = async () => {
-    if (!user) return;
+    if (!user) {return};
 
     try {
       await databases.createDocument(
@@ -34,7 +34,7 @@ export default function AddHabitScreen() {
           frequency,
           streak_count: 0,
           last_completed: new Date().toISOString(),
-          created_at: new Date().toISOString
+          created_at: new Date().toISOString(),
         }
       );
     } catch (error) {
@@ -73,7 +73,6 @@ export default function AddHabitScreen() {
               value: freq,
               label: freq.charAt(0).toUpperCase() + freq.slice(1)
             }))}
-            style={styles.segmentedButtons}
         />
       </View>
       {/* No submitting without a title and description! */}
@@ -94,21 +93,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#f6f6f6",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "#f5f5f5",
+    justifyContent: "center",
   },
 
   input: {
-    marginBottom: 16
+    marginBottom: 16,
   },
 
   frequencyContainer: {
-    marginBottom: 24
+    marginBottom: 24,
   },
-
-  segmentedButtons: {
-
-  },
-
 });
